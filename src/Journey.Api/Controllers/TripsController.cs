@@ -1,13 +1,10 @@
-﻿using Journey.Communication.Requests;
-using Microsoft.AspNetCore.Mvc;
-using Journey.Application.UseCases.Trips.Register;
-using Journey.Exception.ExceptionsBase;
+﻿using Journey.Application.UseCases.Trips.Delete;
 using Journey.Application.UseCases.Trips.GetAll;
-using Journey.Exception;
 using Journey.Application.UseCases.Trips.GetById;
+using Journey.Application.UseCases.Trips.Register;
+using Journey.Communication.Requests;
 using Journey.Communication.Responses;
-using Journey.Application.UseCases.Trips.Delete;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Journey.Api.Controllers
 {

@@ -6,7 +6,12 @@ namespace Journey.Exception.ExceptionsBase
     {
         public NotFoundException(string message) : base(message)
         {
-            
+
+        }
+
+        public override IList<string> GetErrorsMessages()
+        {
+            return [Message];
         }
 
         public override HttpStatusCode GetStatusCode()

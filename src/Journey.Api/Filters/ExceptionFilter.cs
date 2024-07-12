@@ -1,4 +1,5 @@
-﻿using Journey.Exception;
+﻿using Journey.Communication.Responses;
+using Journey.Exception;
 using Journey.Exception.ExceptionsBase;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -12,13 +13,20 @@ namespace Journey.Api.Filters
             if (context.Exception is JourneyException)
             {
                 var journeyException = (JourneyException)context.Exception;
+
                 context.HttpContext.Response.StatusCode = (int)journeyException.GetStatusCode();
-                context.Result = new ObjectResult(context.Exception.Message);
+
+                var responseJson = new ResponseErrorsJSON(journeyException.GetErrorsMessages());
+                
+                context.Result = new ObjectResult(responseJson);
             }
             else
             {
                 context.HttpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
-                context.Result = new ObjectResult(ResourceErrorMessages.UNKNOW);
+
+                var responseJson = new ResponseErrorsJSON(new List<string> { ResourceErrorMessages.UNKNOW });
+
+                context.Result = new ObjectResult(responseJson);
             }
         }
     }
