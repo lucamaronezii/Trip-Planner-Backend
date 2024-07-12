@@ -39,15 +39,15 @@ namespace Journey.Application.UseCases.Trips.Register
         {
             if (string.IsNullOrWhiteSpace(request.Name))
             {
-                throw new JourneyException(ResourceErrorMessages.NAME_EMPTY);
+                throw new ErrorOnValidationException(ResourceErrorMessages.NAME_EMPTY);
             }
             else if (request.StartDate.Date < DateTime.UtcNow.Date)
             {
-                throw new JourneyException(ResourceErrorMessages.STARTDATE_MUST_BE_LATER_THAN_TODAY);
+                throw new ErrorOnValidationException(ResourceErrorMessages.STARTDATE_MUST_BE_LATER_THAN_TODAY);
             }
             else if (request.EndDate.Date < request.StartDate.Date)
             {
-                throw new JourneyException(ResourceErrorMessages.ENDDATE_MUST_BE_LATER_THAN_STARTDATE);
+                throw new ErrorOnValidationException(ResourceErrorMessages.ENDDATE_MUST_BE_LATER_THAN_STARTDATE);
             }
         }
     }

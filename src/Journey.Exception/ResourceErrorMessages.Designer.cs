@@ -70,6 +70,15 @@ namespace Journey.Exception {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The ID didn&apos;t match any record.
+        /// </summary>
+        public static string ID_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("ID_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Name cannot be empty..
         /// </summary>
         public static string NAME_EMPTY {
@@ -84,6 +93,15 @@ namespace Journey.Exception {
         public static string STARTDATE_MUST_BE_LATER_THAN_TODAY {
             get {
                 return ResourceManager.GetString("STARTDATE_MUST_BE_LATER_THAN_TODAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Unkown error..
+        /// </summary>
+        public static string UNKNOW {
+            get {
+                return ResourceManager.GetString("UNKNOW", resourceCulture);
             }
         }
     }

@@ -120,10 +120,16 @@
   <data name="ENDDATE_MUST_BE_LATER_THAN_STARTDATE" xml:space="preserve">
     <value>End Date cannot be later than Start Date.</value>
   </data>
+  <data name="ID_NOT_FOUND" xml:space="preserve">
+    <value>The ID didn't match any record</value>
+  </data>
   <data name="NAME_EMPTY" xml:space="preserve">
     <value>Name cannot be empty.</value>
   </data>
   <data name="STARTDATE_MUST_BE_LATER_THAN_TODAY" xml:space="preserve">
     <value>Start Date cannot be later than today.</value>
+  </data>
+  <data name="UNKNOW" xml:space="preserve">
+    <value>Unkown error.</value>
   </data>
 </root>
