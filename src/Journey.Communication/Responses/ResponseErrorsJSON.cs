@@ -1,10 +1,10 @@
 ﻿namespace Journey.Communication.Responses
 {
-    public class ResponseErrorsJSON
+    public class ResponseErrorsJson
     {
         public IList<string> Errors { get; set; } = [];
 
-        public ResponseErrorsJSON(IList<string> errors)
+        public ResponseErrorsJson(IList<string> errors)
         {
             Errors = new List<string>(errors);
         }

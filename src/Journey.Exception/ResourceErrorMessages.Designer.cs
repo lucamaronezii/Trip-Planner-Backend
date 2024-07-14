@@ -61,6 +61,15 @@ namespace Journey.Exception {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Selected date can&apos;t be less than the end date..
+        /// </summary>
+        public static string DATE_MUST_BE_LESS_THAN_ENDDATE {
+            get {
+                return ResourceManager.GetString("DATE_MUST_BE_LESS_THAN_ENDDATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a End Date cannot be later than Start Date..
         /// </summary>
         public static string ENDDATE_MUST_BE_LATER_THAN_STARTDATE {
@@ -70,7 +79,7 @@ namespace Journey.Exception {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a The ID didn&apos;t match any record.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The ID didn&apos;t match any record..
         /// </summary>
         public static string ID_NOT_FOUND {
             get {

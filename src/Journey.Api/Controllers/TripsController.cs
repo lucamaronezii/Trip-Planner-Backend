@@ -1,4 +1,7 @@
-﻿using Journey.Application.UseCases.Trips.Delete;
+﻿using Journey.Application.UseCases.Activities.Complete;
+using Journey.Application.UseCases.Activities.Delete;
+using Journey.Application.UseCases.Activities.Register;
+using Journey.Application.UseCases.Trips.Delete;
 using Journey.Application.UseCases.Trips.GetAll;
 using Journey.Application.UseCases.Trips.GetById;
 using Journey.Application.UseCases.Trips.Register;
@@ -11,7 +14,7 @@ namespace Journey.Api.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [ProducesResponseType(typeof(ResponseShortTripJson), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status400BadRequest)]
     public class TripsController : ControllerBase
     {
         [HttpPost]
@@ -35,7 +38,7 @@ namespace Journey.Api.Controllers
         [HttpGet]
         [Route("{id}")]
         [ProducesResponseType(typeof(ResponseTripJson), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status404NotFound)]
         public IActionResult GetById([FromRoute] Guid id)
         {
             var useCase = new GetTripByIdUseCase();
@@ -45,7 +48,7 @@ namespace Journey.Api.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status404NotFound)]
         public IActionResult Delete([FromRoute] Guid id)
         {
             var useCase = new DeleteTripUseCase();
@@ -53,6 +56,46 @@ namespace Journey.Api.Controllers
             useCase.Execute(id);
 
             return Ok($"Removed trip: {id}");
+        }
+
+        [HttpPost]
+        [Route("{tripId}/activity")]
+        [ProducesResponseType(typeof(ResponseActivityJson), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status404NotFound)]
+        public IActionResult RegisterActivity([FromRoute] Guid tripId, [FromBody] RequestRegisterActivityJson request)
+        {
+            var useCase = new RegisterActivityUseCase();
+
+            var response = useCase.Execute(tripId, request);
+
+            return Created(string.Empty, response);
+        }
+        
+        [HttpPut]
+        [Route("{tripId}/activity/{activityId}/complete")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult CompleteActivity([FromRoute] Guid tripId, [FromRoute] Guid activityId)
+        {
+            var useCase = new CompleteActivityUseCase();
+
+            useCase.Execute(tripId, activityId);
+
+            return NoContent();
+        }
+
+        [HttpDelete]
+        [Route("{tripId}/activity/{activityId}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult DeleteActivity([FromRoute] Guid tripId, [FromRoute] Guid activityId)
+        {
+            var useCase = new DeleteActivityUseCase();
+
+            useCase.Execute(tripId, activityId);
+
+            return NoContent();
         }
     }
 }

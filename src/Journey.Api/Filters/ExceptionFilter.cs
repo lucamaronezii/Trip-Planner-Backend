@@ -16,7 +16,7 @@ namespace Journey.Api.Filters
 
                 context.HttpContext.Response.StatusCode = (int)journeyException.GetStatusCode();
 
-                var responseJson = new ResponseErrorsJSON(journeyException.GetErrorsMessages());
+                var responseJson = new ResponseErrorsJson(journeyException.GetErrorsMessages());
                 
                 context.Result = new ObjectResult(responseJson);
             }
@@ -24,7 +24,7 @@ namespace Journey.Api.Filters
             {
                 context.HttpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
 
-                var responseJson = new ResponseErrorsJSON(new List<string> { ResourceErrorMessages.UNKNOW });
+                var responseJson = new ResponseErrorsJson(new List<string> { ResourceErrorMessages.UNKNOW });
 
                 context.Result = new ObjectResult(responseJson);
             }
